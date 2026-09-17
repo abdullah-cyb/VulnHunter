@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABDULLAH.CYB VULNHUNTER - Scan Report: http://authorized-lab.local:8080</title>
+  <style>
+    :root {
+      --bg-color: #0b0f19;
+      --card-bg: #111827;
+      --border-color: #1f2937;
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --accent-cyan: #06b6d4;
+      --critical: #ef4444;
+      --high: #f97316;
+      --medium: #eab308;
+      --low: #3b82f6;
+      --info: #6b7280;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      margin: 0;
+      padding: 30px;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .header {
+      border-bottom: 2px solid var(--accent-cyan);
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: var(--accent-cyan);
+    }
+    .tagline {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .meta-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+    .meta-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+    .meta-val {
+      font-size: 18px;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+    .badge-card {
+      background: var(--card-bg);
+      border-left: 4px solid var(--border-color);
+      padding: 15px;
+      border-radius: 6px;
+    }
+    .badge-card.critical { border-left-color: var(--critical); }
+    .badge-card.high { border-left-color: var(--high); }
+    .badge-card.medium { border-left-color: var(--medium); }
+    .badge-card.low { border-left-color: var(--low); }
+    
+    .section-title {
+      font-size: 22px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 10px;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      color: var(--accent-cyan);
+    }
+    .finding-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .finding-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .finding-title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .pill {
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .pill.CRITICAL { background: rgba(239, 68, 68, 0.2); color: var(--critical); border: 1px solid var(--critical); }
+    .pill.HIGH { background: rgba(249, 115, 22, 0.2); color: var(--high); border: 1px solid var(--high); }
+    .pill.MEDIUM { background: rgba(234, 179, 8, 0.2); color: var(--medium); border: 1px solid var(--medium); }
+    .pill.LOW { background: rgba(59, 130, 246, 0.2); color: var(--low); border: 1px solid var(--low); }
+    .pill.CONFIRMED { background: rgba(34, 197, 94, 0.2); color: #22c55e; border: 1px solid #22c55e; }
+    
+    .reasoning-box {
+      background: #0d1117;
+      border: 1px solid #21262d;
+      border-radius: 6px;
+      padding: 15px;
+      margin-top: 15px;
+    }
+    .reasoning-row {
+      margin-bottom: 12px;
+    }
+    .reasoning-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+    }
+    .reasoning-content {
+      font-size: 14px;
+      color: #e5e7eb;
+      margin-top: 4px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div>
+        <div class="brand">ABDULLAH.CYB.VULNHUNTER</div>
+        <div class="tagline">DISCOVER. CORRELATE. VERIFY. REPORT.</div>
+      </div>
+      <div>
+        <span class="pill CONFIRMED">SCAN COMPLETED</span>
+      </div>
+    </div>
+
+    <div class="meta-box">
+      <div class="meta-item">
+        <span class="meta-label">Target</span>
+        <span class="meta-val">http://authorized-lab.local:8080</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Scan ID</span>
+        <span class="meta-val">vh-9a8b7c6d</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Duration</span>
+        <span class="meta-val">4.25s</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Total Findings</span>
+        <span class="meta-val">1</span>
+      </div>
+    </div>
+
+    <div class="summary-grid">
+      <div class="badge-card critical">
+        <div class="meta-label">Critical Findings</div>
+        <div class="meta-val" style="color: var(--critical);">0</div>
+      </div>
+      <div class="badge-card high">
+        <div class="meta-label">High Findings</div>
+        <div class="meta-val" style="color: var(--high);">1</div>
+      </div>
+      <div class="badge-card medium">
+        <div class="meta-label">Medium Findings</div>
+        <div class="meta-val" style="color: var(--medium);">0</div>
+      </div>
+      <div class="badge-card low">
+        <div class="meta-label">Low / Info Findings</div>
+        <div class="meta-val" style="color: var(--low);">0</div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Vulnerability Findings & Evidence</h2>
+    
+      
+      <div class="finding-card">
+        <div class="finding-header">
+          <div class="finding-title">CVE-2021-41773: Apache HTTP Server High Vulnerability</div>
+          <div>
+            <span class="pill HIGH">HIGH</span>
+            <span class="pill PROBABLE">PROBABLE (95%)</span>
+          </div>
+        </div>
+
+        <div class="reasoning-box">
+          <div class="reasoning-row">
+            <div class="reasoning-label">1. WHAT IS IT?</div>
+            <div class="reasoning-content">CVE-2021-41773 - Apache Path Traversal & Remote Code Execution Vulnerability.</div>
+          </div>
+          <div class="reasoning-row">
+            <div class="reasoning-label">2. WHY WAS IT DETECTED?</div>
+            <div class="reasoning-content">Target service on port 8080 is running Apache HTTP Server (Version: 2.4.49). Local CVE database matched CVE-2021-41773.</div>
+          </div>
+          <div class="reasoning-row">
+            <div class="reasoning-label">3. WHAT EVIDENCE SUPPORTS IT?</div>
+            <div class="reasoning-content">Server Banner: 'Apache/2.4.49 (Unix)' on TCP port 8080.</div>
+          </div>
+          <div class="reasoning-row">
+            <div class="reasoning-label">4. CONFIDENCE ANALYSIS</div>
+            <div class="reasoning-content">Confidence rated PROBABLE (0.95) based on Vendor (apache), Product (http_server), and Version correlation (2.4.49).</div>
+          </div>
+          <div class="reasoning-row">
+            <div class="reasoning-label">5. IMPACT ASSESSMENT</div>
+            <div class="reasoning-content">Path traversal attack allowing attackers to map files outside document root. CVSS Score: 7.5. CISA KEV Exploited: Yes.</div>
+          </div>
+          <div class="reasoning-row">
+            <div class="reasoning-label">6. AUTHORIZED VERIFICATION PROCEDURE</div>
+            <div class="reasoning-content">Execute non-intrusive version verification banner query on TCP port 8080.</div>
+          </div>
+          <div class="reasoning-row">
+            <div class="reasoning-label">7. REMEDIATION GUIDANCE</div>
+            <div class="reasoning-content">Upgrade Apache HTTP Server on port 8080 to version 2.4.51 or later.</div>
+          </div>
+        </div>
+      </div>
+      
+    
+
+  </div>
+</body>
+</html>

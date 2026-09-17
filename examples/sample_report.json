@@ -1,0 +1,102 @@
+{
+  "scan_id": "vh-9a8b7c6d",
+  "brand": "ABDULLAH.CYB",
+  "product": "VULNHUNTER",
+  "tagline": "DISCOVER. CORRELATE. VERIFY. REPORT.",
+  "target": "http://authorized-lab.local:8080",
+  "start_time": "2026-09-09T14:00:00.000000+00:00",
+  "end_time": "2026-09-09T14:00:04.250000+00:00",
+  "duration_seconds": 4.25,
+  "scan_mode": "STANDARD",
+  "authorized": true,
+  "stages_executed": [
+    { "number": 1, "name": "Target Analysis", "status": "COMPLETED", "details": "Resolved 1 IP(s)" },
+    { "number": 2, "name": "DNS Resolution", "status": "COMPLETED", "details": "Found 1 A record(s)" },
+    { "number": 3, "name": "Attack Surface Discovery", "status": "COMPLETED", "details": "Target host is reachable" },
+    { "number": 4, "name": "Port Discovery", "status": "COMPLETED", "details": "Discovered 1 open port(s): [8080]" },
+    { "number": 5, "name": "Service Identification", "status": "COMPLETED", "details": "Identified 1 active service(s)" },
+    { "number": 6, "name": "Technology Fingerprinting", "status": "COMPLETED", "details": "Identified: Apache HTTP Server 2.4.49" },
+    { "number": 7, "name": "Version Analysis", "status": "COMPLETED", "details": "Version specs extracted" },
+    { "number": 8, "name": "CVE Intelligence", "status": "COMPLETED", "details": "Correlated 1 intelligence match(es)" },
+    { "number": 9, "name": "Web Crawling", "status": "COMPLETED", "details": "Discovered 2 page link(s)" },
+    { "number": 10, "name": "Endpoint Discovery", "status": "COMPLETED", "details": "2 endpoint(s), 2 param(s)" },
+    { "number": 11, "name": "Passive Security Analysis", "status": "COMPLETED", "details": "Found 1 header/CORS configuration finding(s)" },
+    { "number": 12, "name": "Controlled Active Tests", "status": "COMPLETED", "details": "Active verification generated 1 finding(s)" },
+    { "number": 13, "name": "Evidence Validation", "status": "COMPLETED", "details": "Confidence ratings assigned" },
+    { "number": 14, "name": "Risk Analysis", "status": "COMPLETED", "details": "Risk analysis complete (1 Critical, 1 High)" },
+    { "number": 15, "name": "Report Generation", "status": "COMPLETED", "details": "Exported JSON and HTML reports" }
+  ],
+  "dns_records": { "A": ["127.0.0.1"] },
+  "open_services": [
+    {
+      "port": 8080,
+      "protocol": "tcp",
+      "service_name": "http-alt",
+      "product": "http_server",
+      "vendor": "apache",
+      "version": "2.4.49",
+      "banner": "Server: Apache/2.4.49 (Unix)",
+      "cpe": "cpe:2.3:a:apache:http_server:2.4.49:*:*:*:*:*:*:*",
+      "extra_info": { "server_header": "Apache/2.4.49 (Unix)" }
+    }
+  ],
+  "technologies": [
+    {
+      "name": "Apache HTTP Server",
+      "vendor": "apache",
+      "version": "2.4.49",
+      "category": "Web Server",
+      "confidence": 1.0,
+      "evidence": "Header 'server: Apache/2.4.49 (Unix)'",
+      "cpe": "cpe:2.3:a:apache:http_server:2.4.49:*:*:*:*:*:*:*"
+    }
+  ],
+  "crawled_endpoints": [ "http://authorized-lab.local:8080/", "http://authorized-lab.local:8080/search" ],
+  "discovered_params": [ "id", "q" ],
+  "findings": [
+    {
+      "id": "cve41773",
+      "cve_id": "CVE-2021-41773",
+      "title": "CVE-2021-41773: Apache HTTP Server High Vulnerability",
+      "category": "Known CVE Intelligence",
+      "severity": "HIGH",
+      "status": "PROBABLE",
+      "confidence_score": 0.95,
+      "target": "http://authorized-lab.local:8080",
+      "endpoint": "Port 8080",
+      "vector": "TCP/8080",
+      "metrics": {
+        "vendor_match": true,
+        "product_match": true,
+        "version_match": true,
+        "platform_match": true,
+        "exposure_detected": true,
+        "cve_severity": "HIGH",
+        "kev_status": true,
+        "evidence_confidence": 0.9
+      },
+      "reasoning": {
+        "what_is_it": "CVE-2021-41773 - Apache Path Traversal & Remote Code Execution Vulnerability.",
+        "why_detected": "Target service on port 8080 is running Apache HTTP Server (Version: 2.4.49). Local CVE database matched CVE-2021-41773.",
+        "evidence_supporting": "Server Banner: 'Apache/2.4.49 (Unix)' on TCP port 8080.",
+        "confidence_explanation": "Confidence rated PROBABLE (0.95) based on Vendor (apache), Product (http_server), and Version correlation (2.4.49).",
+        "impact_assessment": "Path traversal attack allowing attackers to map files outside document root. CVSS Score: 7.5. CISA KEV Exploited: Yes.",
+        "verification_guide": "Execute non-intrusive version verification banner query on TCP port 8080.",
+        "remediation_steps": "Upgrade Apache HTTP Server on port 8080 to version 2.4.51 or later.",
+        "references": [ "https://nvd.nist.gov/vuln/detail/CVE-2021-41773" ]
+      },
+      "exploit_info": {
+        "mechanism": "Remote Network Exploitation",
+        "prerequisites": "Direct TCP/HTTP access to port 8080.",
+        "impact": "Path traversal and potential arbitrary code execution.",
+        "safe_verification_procedure": "Check service banner on port 8080 to confirm version patch status.",
+        "remediation": "Apply latest security patches from vendor.",
+        "official_references": [ "https://nvd.nist.gov/vuln/detail/CVE-2021-41773" ]
+      },
+      "timestamp": "2026-09-09T14:00:04.250000+00:00"
+    }
+  ],
+  "summary_by_severity": { "HIGH": 1 },
+  "summary_by_status": { "PROBABLE": 1 },
+  "total_findings": 1
+}
