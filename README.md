@@ -1,70 +1,108 @@
 🛡️ VulnHunter
 
-VulnHunter is a modular Python-based vulnerability assessment tool designed to help security researchers and students discover security weaknesses, analyze services, identify web vulnerabilities, correlate findings with CVEs, and generate security reports.
+VulnHunter is a modular Python-based vulnerability assessment tool for security research, authorized penetration testing, and educational labs.
 
-VulnHunter هي أداة لتقييم الثغرات الأمنية مبنية بلغة Python، تساعد الباحثين والطلاب في الأمن السيبراني على اكتشاف نقاط الضعف، تحليل الخدمات، فحص تطبيقات الويب، ربط النتائج مع CVEs، وإنشاء تقارير أمنية.
+VulnHunter هي أداة مرنة مبنية بلغة Python لتقييم الثغرات الأمنية، واكتشاف الخدمات وتطبيقات الويب، وتحليل الثغرات، وربط النتائج بمعلومات CVE وExploitDB.
 
 ---
 
-📌 Features | المميزات
+📖 About | عن المشروع
 
-- 🔎 Service & Port Discovery — اكتشاف المنافذ والخدمات
-- 🌐 Web Discovery — اكتشاف صفحات ومسارات الويب
-- 📁 Directory Discovery — اكتشاف المجلدات والمسارات المخفية
-- 🕷️ Web Vulnerability Detection — اكتشاف ثغرات تطبيقات الويب
-- 💉 SQL Injection Detection — فحص مؤشرات SQL Injection
-- ⚡ XSS Detection — فحص مؤشرات Cross-Site Scripting
-- 🔄 SSRF Detection — فحص مؤشرات SSRF
-- 📂 Path Traversal Detection — فحص Path Traversal
-- ↪️ Open Redirect Detection — فحص Open Redirect
-- 🔐 Security Misconfiguration Checks — فحص الإعدادات الأمنية الخاطئة
-- 🧩 CVE Correlation — ربط الخدمات والإصدارات مع CVEs
-- 💥 ExploitDB Intelligence — البحث عن معلومات ExploitDB المرتبطة بالنتائج
-- 📊 Security Reports — إنشاء تقارير JSON وHTML
+VulnHunter is designed to automate different stages of a security assessment, starting from target discovery and web enumeration, then detecting potential vulnerabilities and correlating the results with vulnerability intelligence.
+
+تم تصميم VulnHunter لأتمتة عدة مراحل من عملية التقييم الأمني، بدايةً من اكتشاف الهدف والخدمات والمسارات، ثم فحص تطبيقات الويب، واكتشاف مؤشرات الثغرات، وربط النتائج بمعلومات الثغرات الأمنية.
+
+The project is modular, making it easier to add new scanners, vulnerability detectors, and intelligence sources.
+
+المشروع مبني بطريقة Modular، مما يسهل إضافة أدوات فحص جديدة، وكواشف ثغرات جديدة، ومصادر معلومات أمنية جديدة.
+
+---
+
+✨ Features | المميزات
+
+Feature| Description| الوصف
+🔎 Port Discovery| Discover open ports and services| اكتشاف المنافذ والخدمات
+🌐 Web Discovery| Discover web applications and endpoints| اكتشاف تطبيقات ومسارات الويب
+📁 Directory Discovery| Discover accessible directories and files| اكتشاف المجلدات والملفات
+🕷️ Vulnerability Detection| Detect potential web vulnerabilities| اكتشاف مؤشرات الثغرات
+💉 SQL Injection| Check for SQL injection indicators| فحص مؤشرات SQL Injection
+⚡ XSS| Check for Cross-Site Scripting indicators| فحص مؤشرات XSS
+🔄 SSRF| Check for SSRF indicators| فحص مؤشرات SSRF
+📄 XXE| Check for XXE-related issues| فحص مؤشرات XXE
+📂 Path Traversal| Check for path traversal issues| فحص Path Traversal
+↪️ Open Redirect| Check for open redirect issues| فحص Open Redirect
+🔐 Security Checks| Check common security misconfigurations| فحص الإعدادات الأمنية
+🧩 CVE Correlation| Correlate software with CVEs| ربط الخدمات مع CVEs
+💥 ExploitDB| Retrieve related ExploitDB information| البحث عن ExploitDB
+📊 Reporting| Generate structured reports| إنشاء التقارير
 
 ---
 
 🚀 Installation | التثبيت
 
-Clone the repository:
-
-استنسخ المشروع:
+1. Clone the repository | تحميل المشروع
 
 git clone https://github.com/abdullah-cyb/VulnHunter.git
+
 cd VulnHunter
 
-Create a virtual environment:
+---
+
+2. Create a virtual environment | إنشاء بيئة افتراضية
+
+Linux / Parrot OS:
 
 python3 -m venv .venv
+
+Activate the environment:
+
 source .venv/bin/activate
 
-Install the project:
+Windows:
+
+python -m venv .venv
+
+.venv\Scripts\activate
+
+---
+
+3. Install VulnHunter | تثبيت الأداة
 
 pip install -e .
+
+After installation, verify that the command works:
+
+vulnhunter --help
 
 ---
 
 ▶️ Usage | الاستخدام
 
-Basic scan:
-
-فحص أساسي:
+Basic Scan | فحص أساسي
 
 vulnhunter --target 192.168.1.50
 
-Scan an authorized web application:
+---
+
+Scan an Authorized Web Application | فحص تطبيق ويب مصرح به
 
 vulnhunter --target https://authorized-lab.example --authorize
 
-Specify the scan mode:
+---
+
+Standard Scan | الفحص القياسي
 
 vulnhunter --target 192.168.1.50 --mode STANDARD
 
-Deep assessment:
+---
+
+Deep Scan | الفحص المتقدم
 
 vulnhunter --target https://authorized-lab.example --authorize --mode DEEP
 
-Save the results:
+---
+
+Save Results | حفظ النتائج
 
 vulnhunter --target https://authorized-lab.example --authorize -o ./reports
 
@@ -72,210 +110,10 @@ vulnhunter --target https://authorized-lab.example --authorize -o ./reports
 
 🌐 Web Discovery | اكتشاف الويب
 
-VulnHunter can discover web endpoints and directories that may not be directly visible from the main page.
+VulnHunter can discover web applications, endpoints, directories, and other accessible paths.
 
-يمكن للأداة اكتشاف صفحات ومسارات ومجلدات الويب التي قد لا تكون ظاهرة بشكل مباشر.
-
-Example:
-
-vulnhunter --target https://authorized-lab.example --authorize
-
-The results may include:
-
-Web Application
-├── /
-├── /login
-├── /admin
-├── /api
-├── /uploads
-└── discovered endpoints
-
----
-
-🐛 Vulnerability Detection | اكتشاف الثغرات
-
-VulnHunter includes modular detectors for different vulnerability classes.
-
-تحتوي الأداة على وحدات منفصلة لفحص أنواع مختلفة من الثغرات.
-
-Examples:
-
-SQL Injection
-XSS
-SSRF
-XXE
-Path Traversal
-Open Redirect
-CORS Misconfiguration
-GraphQL Issues
-TLS Issues
-Security Misconfiguration
-
-The tool reports findings with information such as:
-
-Vulnerability
-Severity
-Target
-Endpoint
-Parameter
-Evidence
-Confidence
-CVE
-CWE
-ExploitDB Reference
-
----
-
-🧩 CVE & Exploit Intelligence | معلومات الثغرات
-
-VulnHunter can correlate discovered software and versions with vulnerability intelligence.
-
-يمكن للأداة مقارنة الخدمات والإصدارات المكتشفة مع قواعد بيانات الثغرات.
-
-Example result:
-
-Service: Apache HTTP Server
-Version: X.X.X
-
-Potential CVE:
-CVE-XXXX-XXXXX
-
-CWE:
-CWE-XXX
-
-ExploitDB:
-Available / Not Available
-
-Confidence:
-High / Medium / Low
-
-The results are intended to help the security researcher investigate the vulnerability further.
-
----
-
-📊 Reports | التقارير
-
-VulnHunter can generate structured reports for security assessments.
-
-يمكن للأداة إنشاء تقارير منظمة لعمليات التقييم الأمني.
+يمكن لـ VulnHunter اكتشاف تطبيقات الويب والـEndpoints والمجلدات والمسارات المتاحة.
 
 Example:
 
-vulnhunter --target https://authorized-lab.example --authorize -o ./reports
-
-Reports can contain:
-
-Target Information
-Scan Information
-Discovered Services
-Web Endpoints
-Directories
-Vulnerabilities
-Severity
-Evidence
-CVE Information
-ExploitDB References
-Recommendations
-
----
-
-🧪 Testing | الاختبارات
-
-Run the project tests:
-
-pytest
-
-Run with verbose output:
-
-pytest -v
-
----
-
-📁 Project Structure | هيكل المشروع
-
-VulnHunter/
-├── src/
-│   └── vulnhunter/
-│       ├── core/
-│       ├── discovery/
-│       ├── correlation/
-│       ├── intel/
-│       ├── plugins/
-│       ├── reporting/
-│       └── ui/
-│
-├── tests/
-├── examples/
-├── docs/
-├── pyproject.toml
-└── README.md
-
----
-
-⚙️ Architecture | البنية
-
-The project is organized into separate modules so that new scanners and vulnerability detectors can be added easily.
-
-تم تقسيم المشروع إلى وحدات منفصلة لتسهيل إضافة فحوصات واكتشافات جديدة.
-
-Target
-   │
-   ▼
-Discovery
-   │
-   ├── Ports
-   ├── Services
-   ├── Web
-   └── Directories
-   │
-   ▼
-Vulnerability Detection
-   │
-   ▼
-CVE / ExploitDB Correlation
-   │
-   ▼
-Risk & Confidence
-   │
-   ▼
-Reports
-
----
-
-⚠️ Responsible Use | الاستخدام المسؤول
-
-VulnHunter is intended for:
-
-- Authorized penetration testing
-- Security research
-- CTFs and training labs
-- Systems you own
-- Systems where you have explicit permission to test
-
-Only scan systems you are authorized to assess.
-
-الأداة مخصصة للاختبارات الأمنية المصرح بها، والـ CTFs، والمختبرات التعليمية، والأنظمة التي تملكها أو لديك تصريح واضح لاختبارها.
-
----
-
-👨‍💻 Author | المطور
-
-Abdullah Nasser
-
-Cybersecurity Student & Developer
-
-GitHub:
-
-https://github.com/abdullah-cyb
-
-Project:
-
-https://github.com/abdullah-cyb/VulnHunter
-
----
-
-📄 License | الترخيص
-
-This project is intended for educational and authorized security testing purposes.
-
-هذا المشروع مخصص للأغراض التعليمية والاختبارات الأمنية المصرح بها.
+vulnhunter --target https://a
