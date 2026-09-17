@@ -1,118 +1,281 @@
-# ABDULLAH.CYB VULNHUNTER
+🛡️ VulnHunter
 
-> **اكتشاف. ربط البيانات. تحقق. إعداد تقارير.**
-> **DISCOVER. CORRELATE. VERIFY. REPORT.**
->
-> محرك احترافي لاكتشاف الثغرات الأمنية، ربط الاستخبارات، والتحقق منها.
-> Professional Cybersecurity Vulnerability Discovery, Intelligence Correlation, and Verification Engine.
+VulnHunter is a modular Python-based vulnerability assessment tool designed to help security researchers and students discover security weaknesses, analyze services, identify web vulnerabilities, correlate findings with CVEs, and generate security reports.
 
-![صورة التقرير - Report Screenshot](link-to-your-image-here.png)
+VulnHunter هي أداة لتقييم الثغرات الأمنية مبنية بلغة Python، تساعد الباحثين والطلاب في الأمن السيبراني على اكتشاف نقاط الضعف، تحليل الخدمات، فحص تطبيقات الويب، ربط النتائج مع CVEs، وإنشاء تقارير أمنية.
 
 ---
 
-## 🔒 نظرة عامة | Executive Overview
+📌 Features | المميزات
 
-أداة `ABDULLAH.CYB VulnHunter` هي تطبيق متقدم يعمل عبر واجهة سطر الأوامر (CLI) مصمم خصيصاً لمختبري الاختراق، ومحللي الأمن السيبراني، وفرق الهجوم (Red Teams). تنفذ الأداة مسار فحص منهجي مكون من 15 مرحلة لاستهداف الشبكات، تطبيقات الويب، والشبكات الفرعية.
-`ABDULLAH.CYB VulnHunter` is an autonomous senior security engineering CLI application designed for penetration testers, security analysts, and red teams. It executes a 15-stage structured investigation pipeline against network targets, web applications, and subnets.
-
-على عكس أدوات الفحص البدائية التي تولد نتائج مزعجة أو تعتمد على افتراضات ثابتة، تعتمد الأداة على ربط الأدلة متعددة العوامل، مطابقة الإصدارات الدقيقة، التحقق من ثغرات CISA KEV، وإجراء اختبارات نشطة آمنة ومدروسة.
-Unlike primitive scanners that generate noise or hardcoded CVE assumptions, VulnHunter performs multi-factor evidence correlation, semantic version matching, CISA KEV (Known Exploited Vulnerabilities) verification, and safe controlled active probing.
-
----
-
-## ⚡ الميزات الرئيسية | Key Features
-
-* **محرك استخبارات الثغرات الحقيقي:** يعتمد على قاعدة بيانات SQLite محلية مدمجة مع بيانات CISA KEV، ومراجع NVD، وواجهات برمجة OSV. يعمل بكفاءة تامة دون اتصال بالإنترنت.
-  **Real Vulnerability Intelligence Engine:** Local SQLite database populated with CISA KEV catalog data, NVD references, and OSV API integrations. Operates seamlessly offline.
-
-* **مسار فحص من 15 مرحلة:** يعرض تقدم العمل في الوقت الفعلي بدءاً من تحليل الهدف، استعلامات DNS، اكتشاف المنافذ، تحديد التقنيات، ربط الإصدارات، التحقق النشط، وحتى إصدار التقارير.
-  **15-Stage Investigation Pipeline:** Exposes real-time progress across target analysis, DNS, port discovery, technology fingerprinting, version correlation, active verification, and report generation.
-
-* **حماية التفويض الصارمة:** تمنع الأداة تنفيذ أي اختبارات نشطة تداخلية ضد الأهداف غير المصرح بها ما لم يتم تفعيل ذلك صراحةً عبر الأمر (`--authorize`).
-  **Strict Authorization Guard:** Prevents intrusive active probing against unauthorized targets unless explicitly enabled (`--authorize`).
-
-* **تقييم موثوقية الأدلة:** تُصنف النتائج منطقياً إلى `مؤكدة` (CONFIRMED)، `مرجحة` (PROBABLE)، `محتملة` (POTENTIAL)، أو `غير مؤكدة` (NOT VERIFIED) بناءً على المورد، المنتج، الإصدار، والتحقق من إثبات المفهوم.
-  **Evidence Confidence Rating:** Findings are classified as `CONFIRMED`, `PROBABLE`, `POTENTIAL`, or `NOT VERIFIED` based on vendor, product, version, and PoC verification.
-
-* **تقارير احترافية:** توليد تقارير HTML تفاعلية بالوضع المظلم، بالإضافة إلى تصدير النتائج بصيغة JSON لسهولة دمجها مع أدوات أخرى.
-  **Executive Reporting:** Generates interactive HTML reports with dark mode visuals and structured JSON exports.
+- 🔎 Service & Port Discovery — اكتشاف المنافذ والخدمات
+- 🌐 Web Discovery — اكتشاف صفحات ومسارات الويب
+- 📁 Directory Discovery — اكتشاف المجلدات والمسارات المخفية
+- 🕷️ Web Vulnerability Detection — اكتشاف ثغرات تطبيقات الويب
+- 💉 SQL Injection Detection — فحص مؤشرات SQL Injection
+- ⚡ XSS Detection — فحص مؤشرات Cross-Site Scripting
+- 🔄 SSRF Detection — فحص مؤشرات SSRF
+- 📂 Path Traversal Detection — فحص Path Traversal
+- ↪️ Open Redirect Detection — فحص Open Redirect
+- 🔐 Security Misconfiguration Checks — فحص الإعدادات الأمنية الخاطئة
+- 🧩 CVE Correlation — ربط الخدمات والإصدارات مع CVEs
+- 💥 ExploitDB Intelligence — البحث عن معلومات ExploitDB المرتبطة بالنتائج
+- 📊 Security Reports — إنشاء تقارير JSON وHTML
 
 ---
 
-## 🚀 التثبيت | Installation
+🚀 Installation | التثبيت
 
-مخصص لأنظمة لينكس (Kali Linux, Parrot OS, Ubuntu, Debian):
-Linux First (Kali Linux, Parrot OS, Ubuntu, Debian):
+Clone the repository:
 
-استنساخ المستودع | Clone repository:
-```bash
-git clone [https://github.com/abdullah-cyb/vulnhunter.git](https://github.com/abdullah-cyb/vulnhunter.git)
+استنسخ المشروع:
 
-الدخول إلى المجلد | Navigate into the directory:
-cd vulnhunter
+git clone https://github.com/abdullah-cyb/VulnHunter.git
+cd VulnHunter
 
-تثبيت الحزمة بشكل عام أو داخل بيئة افتراضية | Install package globally or in virtualenv:
+Create a virtual environment:
+
+python3 -m venv .venv
+source .venv/bin/activate
+
+Install the project:
+
 pip install -e .
 
-للتحقق من نجاح التثبيت | Verify installation:
-vulnhunter --version
+---
 
-📖 أمثلة الاستخدام | Usage Examples
-1. استطلاع سلبي غير تداخلي وربط ثغرات CVE
-1. Non-Intrusive Passive Reconnaissance & CVE Correlation
+▶️ Usage | الاستخدام
+
+Basic scan:
+
+فحص أساسي:
+
 vulnhunter --target 192.168.1.50
 
-2. فحص شامل ومصرح (يتضمن اختبارات تحقق نشطة وآمنة)
-2. Full Authorized Assessment (Includes Safe Active Verification)
-vulnhunter --target [https://authorized-lab.example:8443](https://authorized-lab.example:8443) --authorize --mode DEEP -o ./reports
+Scan an authorized web application:
 
-3. اكتشاف سطح الهجوم لشبكة فرعية
-3. Subnet Attack Surface Discovery
-vulnhunter --target 10.0.0.0/24 --mode STANDARD
+vulnhunter --target https://authorized-lab.example --authorize
 
-4. مزامنة قاعدة بيانات استخبارات الثغرات
-4. Synchronize Vulnerability Intelligence Database
-vulnhunter --sync-intel
+Specify the scan mode:
 
-🔬 مسار التحقيق المكون من 15 مرحلة | 15-Stage Investigation Pipeline
- * [01] تحليل الهدف | Target Analysis: التحقق من صحة الهدف، استخراج الـ IP، والتحقق من التفويض.
-   Target validation, IP resolution, and authorization verification.
- * [02] استعلامات DNS | DNS Resolution: جلب سجلات A, AAAA, MX, PTR, و TXT.
-   A, AAAA, MX, PTR, and TXT record resolution.
- * [03] اكتشاف سطح الهجوم | Attack Surface: التحقق من استجابة المضيف والبروتوكولات الأساسية.
-   Host reachability & protocol verification.
- * [04] اكتشاف المنافذ | Port Discovery: فحص منافذ TCP بشكل غير متزامن.
-   Asynchronous TCP port scanning.
- * [05] تحديد الخدمات | Service Identification: قراءة لافتات الشبكة (Banner grabbing) وتحليل الترويسات.
-   Banner grabbing & service header parsing.
- * [06] البصمة التقنية | Fingerprinting: استخراج بصمات أطر عمل الويب وأنظمة إدارة المحتوى.
-   Deep web framework, CMS, & language fingerprinting.
- * [07] تحليل الإصدارات | Version Analysis: استخراج دقيق للإصدارات ومطابقتها مع نظام CPE.
-   Semantic version extraction & CPE mapping.
- * [08] استخبارات CVE | CVE Intelligence: المطابقة مع قاعدة بيانات SQLite وقائمة CISA KEV.
-   Local SQLite database cross-correlation against CISA KEV.
- * [09] الزحف على الويب | Web Crawling: استخراج الروابط والمسارات بشكل غير متزامن.
-   Asynchronous web route and link crawling.
- * [10] اكتشاف النقاط الطرفية | Endpoint Discovery: استخراج النماذج (Forms) ومعلمات الإدخال.
-   Form action and parameter vector discovery.
- * [11] التحليل الأمني السلبي | Passive Audit: مراجعة الترويسات الأمنية، إعدادات CORS، و TLS.
-   Security headers, CORS, and TLS configuration audit.
- * [12] الاختبارات النشطة | Active Tests: فحص نشط وآمن (SQLi, XSS, LFI) [لأهداف مصرحة فقط].
-   Safe active probes (SQLi heuristics, XSS, LFI) [Authorized Only].
- * [13] التحقق من الأدلة | Evidence Validation: حساب نسبة الموثوقية بناءً على عوامل متعددة.
-   Multi-vector confidence calculation.
- * [14] تحليل المخاطر | Risk Analysis: حساب وزن CVSS وترتيب الأولويات.
-   Aggregated CVSS weighting & CISA KEV prioritization.
- * [15] إنشاء التقارير | Report Generation: استخراج تقارير نهائية بصيغتي JSON و HTML.
-   JSON & HTML executive report rendering.
-🛡️ الأمان والأخلاقيات | Safety & Ethics
-تخضع مرحلة التحقق النشط من الثغرات (المرحلة 12) لقيود صارمة ولا تعمل إلا عند استخدام علم التصريح --authorize. تم تصميم الأداة للاستخدام الأخلاقي فقط؛ ولا تقوم الأداة بتنفيذ أي استغلال تدميري، أو هجمات حجب الخدمة، أو حقن حمولات خبيثة.
-Active vulnerability verification (Stage 12) is strictly gated behind the --authorize flag. VulnHunter is designed for ethical use only; it never performs destructive exploitation, DoS attacks, or weaponized payload delivery. Ensure explicit permission before scanning any target.
-🧪 بيئة الاختبار | Testing Suite
-لتشغيل حزمة الاختبارات الآلية والمدمجة:
-Run the full automated unit and integration test suite:
+vulnhunter --target 192.168.1.50 --mode STANDARD
+
+Deep assessment:
+
+vulnhunter --target https://authorized-lab.example --authorize --mode DEEP
+
+Save the results:
+
+vulnhunter --target https://authorized-lab.example --authorize -o ./reports
+
+---
+
+🌐 Web Discovery | اكتشاف الويب
+
+VulnHunter can discover web endpoints and directories that may not be directly visible from the main page.
+
+يمكن للأداة اكتشاف صفحات ومسارات ومجلدات الويب التي قد لا تكون ظاهرة بشكل مباشر.
+
+Example:
+
+vulnhunter --target https://authorized-lab.example --authorize
+
+The results may include:
+
+Web Application
+├── /
+├── /login
+├── /admin
+├── /api
+├── /uploads
+└── discovered endpoints
+
+---
+
+🐛 Vulnerability Detection | اكتشاف الثغرات
+
+VulnHunter includes modular detectors for different vulnerability classes.
+
+تحتوي الأداة على وحدات منفصلة لفحص أنواع مختلفة من الثغرات.
+
+Examples:
+
+SQL Injection
+XSS
+SSRF
+XXE
+Path Traversal
+Open Redirect
+CORS Misconfiguration
+GraphQL Issues
+TLS Issues
+Security Misconfiguration
+
+The tool reports findings with information such as:
+
+Vulnerability
+Severity
+Target
+Endpoint
+Parameter
+Evidence
+Confidence
+CVE
+CWE
+ExploitDB Reference
+
+---
+
+🧩 CVE & Exploit Intelligence | معلومات الثغرات
+
+VulnHunter can correlate discovered software and versions with vulnerability intelligence.
+
+يمكن للأداة مقارنة الخدمات والإصدارات المكتشفة مع قواعد بيانات الثغرات.
+
+Example result:
+
+Service: Apache HTTP Server
+Version: X.X.X
+
+Potential CVE:
+CVE-XXXX-XXXXX
+
+CWE:
+CWE-XXX
+
+ExploitDB:
+Available / Not Available
+
+Confidence:
+High / Medium / Low
+
+The results are intended to help the security researcher investigate the vulnerability further.
+
+---
+
+📊 Reports | التقارير
+
+VulnHunter can generate structured reports for security assessments.
+
+يمكن للأداة إنشاء تقارير منظمة لعمليات التقييم الأمني.
+
+Example:
+
+vulnhunter --target https://authorized-lab.example --authorize -o ./reports
+
+Reports can contain:
+
+Target Information
+Scan Information
+Discovered Services
+Web Endpoints
+Directories
+Vulnerabilities
+Severity
+Evidence
+CVE Information
+ExploitDB References
+Recommendations
+
+---
+
+🧪 Testing | الاختبارات
+
+Run the project tests:
+
+pytest
+
+Run with verbose output:
+
 pytest -v
 
-📜 الترخيص | License
-هذا المشروع موزع تحت ترخيص MIT. راجع ملف LICENSE لمزيد من التفاصيل.
-Distributed under the MIT License. See LICENSE for details.
+---
+
+📁 Project Structure | هيكل المشروع
+
+VulnHunter/
+├── src/
+│   └── vulnhunter/
+│       ├── core/
+│       ├── discovery/
+│       ├── correlation/
+│       ├── intel/
+│       ├── plugins/
+│       ├── reporting/
+│       └── ui/
+│
+├── tests/
+├── examples/
+├── docs/
+├── pyproject.toml
+└── README.md
+
+---
+
+⚙️ Architecture | البنية
+
+The project is organized into separate modules so that new scanners and vulnerability detectors can be added easily.
+
+تم تقسيم المشروع إلى وحدات منفصلة لتسهيل إضافة فحوصات واكتشافات جديدة.
+
+Target
+   │
+   ▼
+Discovery
+   │
+   ├── Ports
+   ├── Services
+   ├── Web
+   └── Directories
+   │
+   ▼
+Vulnerability Detection
+   │
+   ▼
+CVE / ExploitDB Correlation
+   │
+   ▼
+Risk & Confidence
+   │
+   ▼
+Reports
+
+---
+
+⚠️ Responsible Use | الاستخدام المسؤول
+
+VulnHunter is intended for:
+
+- Authorized penetration testing
+- Security research
+- CTFs and training labs
+- Systems you own
+- Systems where you have explicit permission to test
+
+Only scan systems you are authorized to assess.
+
+الأداة مخصصة للاختبارات الأمنية المصرح بها، والـ CTFs، والمختبرات التعليمية، والأنظمة التي تملكها أو لديك تصريح واضح لاختبارها.
+
+---
+
+👨‍💻 Author | المطور
+
+Abdullah Nasser
+
+Cybersecurity Student & Developer
+
+GitHub:
+
+https://github.com/abdullah-cyb
+
+Project:
+
+https://github.com/abdullah-cyb/VulnHunter
+
+---
+
+📄 License | الترخيص
+
+This project is intended for educational and authorized security testing purposes.
+
+هذا المشروع مخصص للأغراض التعليمية والاختبارات الأمنية المصرح بها.
