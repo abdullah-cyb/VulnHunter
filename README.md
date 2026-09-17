@@ -116,4 +116,357 @@ VulnHunter can discover web applications, endpoints, directories, and other acce
 
 Example:
 
-vulnhunter --target https://a
+vulnhunter --target https://authorized-lab.example --authorize
+
+Possible discovery results:
+
+/
+├── login
+├── admin
+├── api
+├── uploads
+├── assets
+└── discovered endpoints
+
+Directory discovery helps identify paths that may not be directly linked from the main web page.
+
+يساعد اكتشاف المجلدات في العثور على مسارات قد لا تكون مرتبطة بشكل مباشر بالصفحة الرئيسية.
+
+---
+
+🐛 Vulnerability Detection | اكتشاف الثغرات
+
+VulnHunter uses modular vulnerability detectors.
+
+يستخدم VulnHunter وحدات منفصلة لاكتشاف أنواع مختلفة من الثغرات.
+
+Current detector categories include:
+
+SQL Injection
+Cross-Site Scripting (XSS)
+Server-Side Request Forgery (SSRF)
+XML External Entity (XXE)
+Path Traversal
+Open Redirect
+CORS Misconfiguration
+GraphQL Security Checks
+TLS Security Checks
+Security Misconfiguration
+Weak Credentials Checks
+
+The tool analyzes the target and reports potential findings with supporting information.
+
+تقوم الأداة بتحليل الهدف وعرض النتائج المحتملة مع المعلومات المرتبطة بها.
+
+---
+
+💉 SQL Injection | حقن SQL
+
+VulnHunter can check web parameters for indicators of SQL injection vulnerabilities.
+
+يمكن لـ VulnHunter فحص معاملات تطبيقات الويب بحثًا عن مؤشرات SQL Injection.
+
+Example:
+
+vulnhunter --target https://authorized-lab.example --authorize
+
+Possible result:
+
+Vulnerability: SQL Injection
+Severity: High
+Endpoint: /product
+Parameter: id
+Confidence: High
+
+---
+
+⚡ XSS | Cross-Site Scripting
+
+The XSS detector checks web inputs and responses for potential Cross-Site Scripting indicators.
+
+يقوم كاشف XSS بفحص المدخلات والاستجابات بحثًا عن مؤشرات Cross-Site Scripting.
+
+Possible result:
+
+Vulnerability: Cross-Site Scripting
+Type: Reflected
+Endpoint: /search
+Parameter: q
+Confidence: Medium
+
+---
+
+🔄 SSRF | Server-Side Request Forgery
+
+VulnHunter can identify parameters and endpoints that may be vulnerable to SSRF.
+
+يمكن للأداة اكتشاف الـEndpoints والمعاملات التي قد تكون مرتبطة بثغرات SSRF.
+
+Possible result:
+
+Vulnerability: SSRF
+Endpoint: /fetch
+Parameter: url
+Confidence: Medium
+
+---
+
+📂 Path Traversal | تجاوز المسارات
+
+The Path Traversal detector checks for potential unsafe file path handling.
+
+يقوم الكاشف بفحص التعامل مع مسارات الملفات بحثًا عن مؤشرات Path Traversal.
+
+Possible result:
+
+Vulnerability: Path Traversal
+Endpoint: /download
+Parameter: file
+Confidence: High
+
+---
+
+🧩 CVE Intelligence | معلومات CVE
+
+VulnHunter can correlate discovered software and versions with known CVEs.
+
+يمكن للأداة ربط البرامج والإصدارات المكتشفة مع الثغرات المعروفة في CVE.
+
+Example:
+
+Service: Apache HTTP Server
+Version: X.X.X
+
+CVE:
+CVE-XXXX-XXXXX
+
+CWE:
+CWE-XXX
+
+Severity:
+High
+
+Confidence:
+High
+
+The purpose of this feature is to help researchers investigate known vulnerabilities related to discovered software.
+
+الهدف من هذه الميزة هو مساعدة الباحث الأمني على معرفة الثغرات المعروفة المرتبطة بالبرامج والإصدارات المكتشفة.
+
+---
+
+💥 ExploitDB Intelligence | معلومات ExploitDB
+
+VulnHunter can associate relevant findings with ExploitDB information when available.
+
+يمكن للأداة ربط النتائج بمعلومات ExploitDB عند توفرها.
+
+Example:
+
+CVE: CVE-XXXX-XXXXX
+ExploitDB: Available
+Reference: ExploitDB Entry
+
+This information is provided for vulnerability research and verification.
+
+هذه المعلومات مخصصة للبحث الأمني والتحقق من الثغرات.
+
+---
+
+📊 Reports | التقارير
+
+VulnHunter can generate structured security assessment reports.
+
+يمكن لـ VulnHunter إنشاء تقارير منظمة لنتائج التقييم الأمني.
+
+Example:
+
+vulnhunter --target https://authorized-lab.example --authorize -o ./reports
+
+Reports can contain:
+
+Target Information
+Scan Information
+Open Ports
+Detected Services
+Web Applications
+Directories
+Endpoints
+Vulnerabilities
+Severity
+Evidence
+Confidence
+CVE Information
+ExploitDB References
+Recommendations
+
+---
+
+🧪 Testing | الاختبارات
+
+Run the complete test suite:
+
+pytest
+
+Run tests with detailed output:
+
+pytest -v
+
+Run a specific test directory:
+
+pytest tests/
+
+---
+
+📁 Project Structure | هيكل المشروع
+
+VulnHunter/
+│
+├── src/
+│   └── vulnhunter/
+│       │
+│       ├── core/
+│       │   ├── engine.py
+│       │   ├── models.py
+│       │   ├── config.py
+│       │   ├── audit.py
+│       │   └── scope.py
+│       │
+│       ├── discovery/
+│       │   ├── port_scanner.py
+│       │   ├── web_crawler.py
+│       │   ├── web_directory.py
+│       │   ├── endpoint_discovery.py
+│       │   └── importer.py
+│       │
+│       ├── correlation/
+│       │   ├── cve_correlator.py
+│       │   ├── version_matcher.py
+│       │   └── confidence_calculator.py
+│       │
+│       ├── intel/
+│       │   ├── db.py
+│       │   ├── nvd_cache.py
+│       │   ├── exploitdb.py
+│       │   └── cwe_map.py
+│       │
+│       ├── plugins/
+│       │   ├── sqli.py
+│       │   ├── xss.py
+│       │   ├── ssrf.py
+│       │   ├── xxe.py
+│       │   ├── path_traversal.py
+│       │   ├── open_redirect.py
+│       │   ├── cors_checker.py
+│       │   ├── graphql_checker.py
+│       │   ├── tls_checker.py
+│       │   └── misconfig.py
+│       │
+│       ├── reporting/
+│       │   ├── html_reporter.py
+│       │   └── json_reporter.py
+│       │
+│       └── ui/
+│           └── console.py
+│
+├── tests/
+├── examples/
+├── docs/
+├── pyproject.toml
+└── README.md
+
+---
+
+⚙️ Architecture | البنية
+
+The general workflow of VulnHunter is:
+
+مسار عمل VulnHunter بشكل عام:
+
+Target
+   │
+   ▼
+Discovery
+   │
+   ├── Ports
+   ├── Services
+   ├── Web Applications
+   ├── Endpoints
+   └── Directories
+   │
+   ▼
+Vulnerability Detection
+   │
+   ├── SQL Injection
+   ├── XSS
+   ├── SSRF
+   ├── XXE
+   ├── Path Traversal
+   └── Other Checks
+   │
+   ▼
+CVE / ExploitDB Correlation
+   │
+   ▼
+Confidence & Analysis
+   │
+   ▼
+Security Report
+
+---
+
+🔐 Authorization | التصريح
+
+VulnHunter is intended for authorized security testing only.
+
+Use the tool only against:
+
+- Systems you own
+- Authorized penetration-testing targets
+- CTF environments
+- Educational labs
+- Systems where you have explicit permission
+
+استخدم الأداة فقط على الأنظمة التي تملكها أو لديك تصريح واضح لاختبارها.
+
+Do not scan or test systems without authorization.
+
+---
+
+🛠️ Development | التطوير
+
+To install the project for development:
+
+git clone https://github.com/abdullah-cyb/VulnHunter.git
+cd VulnHunter
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -e .
+
+Run the tests:
+
+pytest -v
+
+---
+
+👨‍💻 Author | المطور
+
+Abdullah Nasser
+
+Cybersecurity Student & Developer
+
+GitHub:
+
+https://github.com/abdullah-cyb
+
+Project:
+
+https://github.com/abdullah-cyb/VulnHunter
+
+---
+
+📄 License | الترخيص
+
+VulnHunter is developed for educational purposes, security research, and authorized security assessments.
+
+تم تطوير VulnHunter للأغراض التعليمية والبحث الأمني وعمليات التقييم الأمني المصرح بها.
