@@ -1,8 +1,0 @@
-pyproject.toml
-src/abdullah_cyb_vulnhunter.egg-info/PKG-INFO
-src/abdullah_cyb_vulnhunter.egg-info/SOURCES.txt
-src/abdullah_cyb_vulnhunter.egg-info/dependency_links.txt
-src/abdullah_cyb_vulnhunter.egg-info/entry_points.txt
-src/abdullah_cyb_vulnhunter.egg-info/requires.txt
-src/abdullah_cyb_vulnhunter.egg-info/top_level.txt
-src/vulnhunter/__init__.py
