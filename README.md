@@ -1,109 +1,54 @@
-# ABDULLAH.CYB VULNHUNTER
+<div align="center">🛡️ ABDULLAH.CYB VulnHunter
 
-> **DISCOVER. CORRELATE. VERIFY. REPORT.**  
-> Professional Cybersecurity Vulnerability Discovery, Intelligence Correlation, and Verification Engine.
+DISCOVER · CORRELATE · VERIFY · REPORT
 
----
+A modular cybersecurity vulnerability assessment, intelligence correlation, and security verification engine.
 
-## 🔒 Executive Overview
+منصة معيارية لتقييم الثغرات الأمنية وربط المعلومات الأمنية والتحقق منها وإصدار تقارير احترافية.
 
-`ABDULLAH.CYB VulnHunter` is an autonomous senior security engineering CLI application designed for penetration testers, security analysts, and red teams. It executes a **15-stage structured investigation pipeline** against network targets, web applications, and subnets. 
+<br><img src="docs/images/hero.png" alt="VulnHunter Hero" width="850"><br><br>
 
-Unlike primitive scanners that generate noise or hardcoded CVE assumptions, **VulnHunter** performs multi-factor evidence correlation, semantic version matching, CISA KEV (Known Exploited Vulnerabilities) verification, and safe controlled active probing.
+""Python" (https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python)" (https://www.python.org/)
+""Platform" (https://img.shields.io/badge/Platform-Linux-informational?style=for-the-badge&logo=linux)" (https://www.linux.org/)
+""License" (https://img.shields.io/badge/License-MIT-green?style=for-the-badge)" (LICENSE)
+""Status" (https://img.shields.io/badge/Status-Active%20Development-orange?style=for-the-badge)" (#project-status)
+""Tests" (https://img.shields.io/badge/Tests-Pytest-yellow?style=for-the-badge&logo=pytest)" (#testing)
+""GitHub" (https://img.shields.io/badge/GitHub-abdullah--cyb-black?style=for-the-badge&logo=github)" (https://github.com/abdullah-cyb)
 
----
+</div>---
 
-## ⚡ Key Features
+🧭 About VulnHunter | عن المشروع
 
-- **Real Vulnerability Intelligence Engine**: Local SQLite database populated with CISA KEV catalog data, NVD references, and OSV API integrations. Operates seamlessly offline.
-- **15-Stage Investigation Pipeline**: Exposes real-time progress across target analysis, DNS, port discovery, service identification, web technology fingerprinting, version correlation, active verification, and report generation.
-- **Strict Authorization Guard**: Prevents intrusive active probing against unauthorized targets unless explicitly enabled (`--authorize`).
-- **Evidence Confidence Rating**: Findings are classified as `CONFIRMED`, `PROBABLE`, `POTENTIAL`, or `NOT VERIFIED` based on vendor, product, version, and proof-of-concept verification.
-- **Executive Reporting**: Generates interactive HTML reports with dark mode visuals and structured JSON exports.
+🇬🇧 English
 
----
+VulnHunter is a modular cybersecurity assessment engine built for authorized penetration testing, security research, CTF environments, and defensive security analysis.
 
-## 🚀 Installation
+It combines attack-surface discovery, service identification, web reconnaissance, technology fingerprinting, vulnerability intelligence, CVE correlation, controlled verification, evidence analysis, and automated reporting into a structured investigation workflow.
 
-### Linux First (Kali Linux, Parrot OS, Ubuntu, Debian)
-
-```bash
-# Clone repository
-git clone https://github.com/abdullah-cyb/vulnhunter.git
-cd vulnhunter
-
-# Install package globally or in virtualenv
-pip install -e .
-```
-
-Verify installation:
-```bash
-vulnhunter --version
-```
+Rather than treating every detected technology or version as a confirmed vulnerability, VulnHunter attempts to correlate multiple evidence sources before assigning a confidence level to a finding.
 
 ---
 
-## 📖 Usage Examples
+🇸🇦 العربية
 
-### 1. Non-Intrusive Passive Reconnaissance & CVE Correlation
-```bash
-vulnhunter --target 192.168.1.50
-```
+VulnHunter هي أداة معيارية لتقييم الثغرات الأمنية، تم تطويرها للاختبارات الأمنية المصرح بها، والبحث الأمني، وبيئات CTF، والتحليل الدفاعي.
 
-### 2. Full Authorized Assessment (Includes Safe Active Verification)
-```bash
-vulnhunter --target https://authorized-lab.example:8443 --authorize --mode DEEP -o ./reports
-```
+تجمع الأداة بين اكتشاف سطح الهجوم، واكتشاف الخدمات، وتحليل تطبيقات الويب، وتحديد التقنيات والإصدارات، وربط معلومات CVE، والتحقق المنضبط، وتحليل الأدلة، وإنشاء التقارير الآلية ضمن سير عمل واحد ومنظم.
 
-### 3. Subnet Attack Surface Discovery
-```bash
-vulnhunter --target 10.0.0.0/24 --mode STANDARD
-```
-
-### 4. Synchronize Vulnerability Intelligence Database
-```bash
-vulnhunter --sync-intel
-```
+وبدلًا من اعتبار كل تقنية أو إصدار مكتشف ثغرة مؤكدة بشكل مباشر، يحاول VulnHunter ربط عدة مصادر من الأدلة قبل تحديد مستوى الثقة في النتيجة.
 
 ---
 
-## 🔬 15-Stage Investigation Pipeline
+⚡ Core Features | أهم المميزات
 
-| Stage # | Stage Name | Purpose |
-|:---|:---|:---|
-| `[01]` | Target Analysis | Target validation, IP resolution, and authorization verification |
-| `[02]` | DNS Resolution | A, AAAA, MX, PTR, and TXT record resolution |
-| `[03]` | Attack Surface Discovery | Host reachability & protocol verification |
-| `[04]` | Port Discovery | Asynchronous TCP port scanning |
-| `[05]` | Service Identification | Banner grabbing & service header parsing |
-| `[06]` | Technology Fingerprinting | Deep web framework, CMS, & language fingerprinting |
-| `[07]` | Version Analysis | Semantic version extraction & CPE mapping |
-| `[08]` | CVE Intelligence | Local SQLite database cross-correlation against CISA KEV |
-| `[09]` | Web Crawling | Asynchronous web route and link crawling |
-| `[10]` | Endpoint Discovery | Form action and parameter vector discovery |
-| `[11]` | Passive Security Analysis | Security headers, CORS, and TLS configuration audit |
-| `[12]` | Controlled Active Tests | Safe active probes (SQLi heuristics, XSS, LFI) [Authorized Only] |
-| `[13]` | Evidence Validation | Multi-vector confidence calculation (`CONFIRMED`, `PROBABLE`, etc.) |
-| `[14]` | Risk Analysis | Aggregated CVSS weighting & CISA KEV prioritization |
-| `[15]` | Report Generation | JSON & HTML report rendering |
-
----
-
-## 🛡️ Safety & Ethics
-
-Active vulnerability verification (`Stage 12`) is strictly gated behind the `--authorize` flag. **VulnHunter** never performs destructive exploitation, denial-of-service, or weaponized payload delivery.
-
----
-
-## 🧪 Testing Suite
-
-Run full automated unit and integration tests:
-```bash
-pytest -v
-```
-
----
-
-## 📜 License & Compliance
-
-Distributed under the **MIT License**. See [LICENSE](LICENSE) for details.
+🔥 Feature| 🇬🇧 Description| 🇸🇦 الوصف
+🔎 Attack Surface Discovery| Discover hosts, services and exposed attack surfaces| اكتشاف الأجهزة والخدمات وسطح الهجوم
+🌐 Web Discovery| Crawl websites and discover routes and resources| اكتشاف مسارات وموارد تطبيقات الويب
+📁 Directory Discovery| Identify accessible web directories and paths| اكتشاف المجلدات والمسارات المتاحة
+🧩 Technology Fingerprinting| Identify frameworks, CMS and technologies| تحديد الأطر وCMS والتقنيات
+🔢 Version Analysis| Extract and correlate software versions| استخراج وربط إصدارات البرمجيات
+🧠 CVE Correlation| Correlate products and versions with vulnerability data| ربط المنتجات والإصدارات بمعلومات الثغرات
+🛡️ CISA KEV Intelligence| Prioritize vulnerabilities appearing in KEV intelligence| الاستفادة من بيانات CISA KEV
+🧪 Detection Plugins| Modular security detection architecture| نظام Plugins لاكتشاف المشكلات الأمنية
+🎯 Controlled Verification| Authorized active verification capabilities| التحقق النشط المصرح به
+📊 Confidence Analysis| Evidence-
