@@ -44,12 +44,14 @@ Unlike primitive scanners that generate noise or hardcoded CVE assumptions, Vuln
 مخصص لأنظمة لينكس (Kali Linux, Parrot OS, Ubuntu, Debian):
 Linux First (Kali Linux, Parrot OS, Ubuntu, Debian):
 
+استنساخ المستودع | Clone repository:
 ```bash
-# استنساخ المستودع | Clone repository
 git clone [https://github.com/abdullah-cyb/vulnhunter.git](https://github.com/abdullah-cyb/vulnhunter.git)
+
+الدخول إلى المجلد | Navigate into the directory:
 cd vulnhunter
 
-# تثبيت الحزمة بشكل عام أو داخل بيئة افتراضية | Install package globally or in virtualenv
+تثبيت الحزمة بشكل عام أو داخل بيئة افتراضية | Install package globally or in virtualenv:
 pip install -e .
 
 للتحقق من نجاح التثبيت | Verify installation:
